@@ -19,7 +19,7 @@ function PokemonCard() {
         alt="pokemon img"
         className="pokemon-img"
       />
-      <h3 className="text">hp: {pokemon.stats[0].base_stat}</h3>
+      <h3 className="text">HP: {pokemon.stats[0].base_stat}</h3>
     </li>
   ) : (
     <p className="loading">Loading...</p>
