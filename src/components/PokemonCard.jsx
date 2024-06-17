@@ -1,17 +1,10 @@
 import "./PokemonCard.css";
-import { useEffect } from "react";
 import { useState } from "react";
 
-function PokemonCard() {
-  const [pokemon, setPokemon] = useState({});
+function PokemonCard(props) {
+  const { pokemon } = props;
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/1")
-      .then((response) => response.json())
-      .then((data) => setPokemon(data));
-  }, []);
-
-  return pokemon.id ? (
+  return (
     <li className="pokemon-card">
       <h2 className="text">{pokemon.name}</h2>
       <img
@@ -21,8 +14,6 @@ function PokemonCard() {
       />
       <h3 className="text">HP: {pokemon.stats[0].base_stat}</h3>
     </li>
-  ) : (
-    <p className="loading">Loading...</p>
   );
 }
 

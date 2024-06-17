@@ -1,10 +1,39 @@
+import "./PokemonList.css";
+import { useEffect, useState } from "react";
 import PokemonCard from "./PokemonCard";
 
 function PokemonList() {
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    getPokemons(10);
+  }, []);
+
+  const fetchPokemon = async (index) => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+    const data = await response.json();
+    return data;
+  };
+
+  const getPokemons = async (quantity) => {
+    const pkmnArr = [];
+
+    for (let i = 1; i <= quantity; i++) {
+      const pokemon = await fetchPokemon(i);
+      pkmnArr.push(pokemon);
+    }
+
+    setPokemons(pkmnArr);
+  };
+
+  const pokemonCards = pokemons.map((pokemon) => {
+    return <PokemonCard key={pokemon.id} pokemon={pokemon}></PokemonCard>;
+  });
+
   return (
-    <ul className="pokemon-list">
-      <PokemonCard></PokemonCard>
-    </ul>
+    <div>
+      <ul className="pokemon-list">{pokemonCards}</ul>
+    </div>
   );
 }
 
