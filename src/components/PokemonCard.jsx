@@ -1,5 +1,4 @@
 import "./PokemonCard.css";
-import { useState } from "react";
 
 function PokemonCard(props) {
   const { pokemon } = props;
