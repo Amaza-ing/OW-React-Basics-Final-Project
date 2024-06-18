@@ -1,10 +1,10 @@
 import "./PokemonCard.css";
 
 function PokemonCard(props) {
-  const { pokemon } = props;
+  const { pokemon, selectPokemon } = props;
 
   return (
-    <li className="pokemon-card">
+    <li className="pokemon-card" onClick={() => selectPokemon(pokemon)}>
       <h2 className="text">{pokemon.name}</h2>
       <img
         src={pokemon.sprites.front_default}
